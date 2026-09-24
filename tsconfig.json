@@ -3,9 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "src",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -16,10 +14,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "node",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["ES2022", "dom"],
+    "module": "preserve",
     "paths": {
       "@core": ["src/app/core"],
       "@core/*": ["src/app/core/*"],
@@ -37,13 +32,4 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
 }

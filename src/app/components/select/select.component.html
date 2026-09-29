@@ -1,0 +1,36 @@
+<mat-form-field class="col-12 p-0">
+  <mat-label>{{ Label }}</mat-label>
+  @if (WithoutForm) {
+    <mtx-select
+      [items]="data"
+      [bindLabel]="bindLabel"
+      [bindValue]="bindValue"
+      [placeholder]="PlaceHolder || Label"
+      [id]="Id"
+      [multiple]="isMultiple"
+      [required]="isRequired"
+      [addTag]="_addTag"
+      (add)="AddTag"
+      (change)="ValueChanged.emit($event)"
+      [tabIndex]="TabIndex"
+      (keydown.enter)="onEnter($event)"
+      appInputTrim
+    />
+  } @else {
+    <mtx-select
+      [items]="data"
+      [bindLabel]="bindLabel"
+      [bindValue]="bindValue"
+      [placeholder]="PlaceHolder || Label"
+      [formControlName]="Id"
+      [multiple]="isMultiple"
+      [required]="isRequired"
+      [addTag]="_addTag"
+      (add)="AddTag"
+      (change)="ValueChanged.emit($event)"
+      [tabIndex]="TabIndex"
+      (keydown.enter)="onEnter($event)"
+      appInputTrim
+    />
+  }
+</mat-form-field>

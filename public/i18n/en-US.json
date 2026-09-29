@@ -1,9 +1,9 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "design": "Design",
-    "design.colors": "Color System",
-    "design.icons": "Material Icons",
+    "work":"Work",
+    "user":"User",
+    "customer":"Customer",
     "material": "Material",
     "material.form-controls": "Form Controls",
     "material.form-controls.autocomplete": "Autocomplete",

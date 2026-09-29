@@ -1,21 +1,40 @@
 <ng-container
-  [ngTemplateOutlet]="menuTpl"
-  [ngTemplateOutletContext]="{ menuList: menu.getAll() | async, parentRoute: [], level: 0 }"
+  [ngTemplateOutlet]="menuListTpl"
+  [ngTemplateOutletContext]="{ menuList: menu$ | async, parentRoute: [], level: 0, expanded: true }"
 />
 
-<ng-template #menuTpl let-menuList="menuList" let-parentRoute="parentRoute" let-level="level">
-  <ul navAccordion class="matero-sidemenu level-{{ level }}" [class.submenu]="level > 0">
-    @for (menuItem of menuList; track $index) {
+<ng-template
+  #menuListTpl
+  let-menuList="menuList"
+  let-parentRoute="parentRoute"
+  let-level="level"
+  let-expanded="expanded"
+>
+  <ul
+    navAccordion
+    class="matero-sidemenu level-{{ level }}"
+    [class.submenu]="level > 0"
+    [@expansion]="expanded ? 'expanded' : 'collapsed'"
+  >
+    @for (menuItem of menuList; track menuItem) {
       <ng-template
         [ngxPermissionsOnly]="menuItem.permissions?.only"
         [ngxPermissionsExcept]="menuItem.permissions?.except"
       >
-        <li class="menu-item" navAccordionItem [route]="menuItem.route" routerLinkActive="active">
+        <li
+          #navItem="navAccordionItem"
+          navAccordionItem
+          class="menu-item"
+          routerLinkActive="active"
+          [route]="menuItem.route"
+          [type]="menuItem.type"
+        >
           @if (menuItem.type === 'link') {
             <a
               class="menu-heading"
-              [routerLink]="menu.buildRoute(parentRoute.concat([menuItem.route]))"
+              [routerLink]="buildRoute(parentRoute.concat([menuItem.route]))"
               matRipple
+              [matRippleDisabled]="!ripple"
             >
               <ng-container
                 [ngTemplateOutlet]="linkTypeTpl"
@@ -24,7 +43,7 @@
             </a>
           }
           @if (menuItem.type === 'extLink') {
-            <a class="menu-heading" [href]="menuItem.route" matRipple>
+            <a class="menu-heading" [href]="menuItem.route" matRipple [matRippleDisabled]="!ripple">
               <ng-container
                 [ngTemplateOutlet]="linkTypeTpl"
                 [ngTemplateOutletContext]="{ item: menuItem, level: level }"
@@ -32,7 +51,13 @@
             </a>
           }
           @if (menuItem.type === 'extTabLink') {
-            <a class="menu-heading" [href]="menuItem.route" target="_blank" matRipple>
+            <a
+              class="menu-heading"
+              [href]="menuItem.route"
+              target="_blank"
+              matRipple
+              [matRippleDisabled]="!ripple"
+            >
               <ng-container
                 [ngTemplateOutlet]="linkTypeTpl"
                 [ngTemplateOutletContext]="{ item: menuItem, level: level }"
@@ -40,7 +65,12 @@
             </a>
           }
           @if (menuItem.type === 'sub') {
-            <button navAccordionToggle class="menu-heading menu-toggle" matRipple>
+            <button
+              navAccordionToggle
+              class="menu-heading menu-toggle"
+              matRipple
+              [matRippleDisabled]="!ripple"
+            >
               <ng-container
                 [ngTemplateOutlet]="linkTypeTpl"
                 [ngTemplateOutletContext]="{ item: menuItem, level: level }"
@@ -48,11 +78,12 @@
             </button>
 
             <ng-container
-              [ngTemplateOutlet]="menuTpl"
+              [ngTemplateOutlet]="menuListTpl"
               [ngTemplateOutletContext]="{
                 menuList: menuItem.children,
                 parentRoute: parentRoute.concat([menuItem.route]),
                 level: level + 1,
+                expanded: navItem.expanded,
               }"
             />
           }

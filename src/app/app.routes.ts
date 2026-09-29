@@ -8,6 +8,9 @@ import { Error404 } from './routes/sessions/error-404';
 import { Error500 } from './routes/sessions/error-500';
 import { Login } from './routes/sessions/login/login';
 import { Register } from './routes/sessions/register/register';
+import { WorkComponent } from './routes/work/index.work.component';
+import { CustomerComponent } from './routes/customer/index.customer.component';
+import { UserComponent } from './routes/user/index.user.component';
 
 export const routes: Routes = [
   {
@@ -21,38 +24,9 @@ export const routes: Routes = [
       { path: '403', component: Error403 },
       { path: '404', component: Error404 },
       { path: '500', component: Error500 },
-      {
-        path: 'design',
-        loadChildren: () => import('./routes/design/design.routes').then(m => m.routes),
-      },
-      {
-        path: 'material',
-        loadChildren: () => import('./routes/material/material.routes').then(m => m.routes),
-      },
-      {
-        path: 'media',
-        loadChildren: () => import('./routes/media/media.routes').then(m => m.routes),
-      },
-      {
-        path: 'forms',
-        loadChildren: () => import('./routes/forms/forms.routes').then(m => m.routes),
-      },
-      {
-        path: 'tables',
-        loadChildren: () => import('./routes/tables/tables.routes').then(m => m.routes),
-      },
-      {
-        path: 'profile',
-        loadChildren: () => import('./routes/profile/profile.routes').then(m => m.routes),
-      },
-      {
-        path: 'permissions',
-        loadChildren: () => import('./routes/permissions/permissions.routes').then(m => m.routes),
-      },
-      {
-        path: 'utilities',
-        loadChildren: () => import('./routes/utilities/utilities.routes').then(m => m.routes),
-      },
+      { path: 'work', component: WorkComponent },
+      { path: 'customer', component: CustomerComponent },
+      { path: 'user', component: UserComponent }
     ],
   },
   {

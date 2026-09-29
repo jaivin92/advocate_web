@@ -1,0 +1,22 @@
+<div class="m-t-8 d-flex justify-content-end">
+  @if (noteTemplate) {
+    <ng-container>
+      <ng-template [ngTemplateOutlet]="noteTemplate" />
+    </ng-container>
+  }
+  <button mat-button class="m-x-8" tabindex="-1" type="button" (click)="onCancel()" style="background-color: #898989; border-radius: 5px; color: #ffffff">{{ CancelBtnText }}</button>
+  <button
+    mat-raised-button
+    type="button"
+    color="primary"
+    style="background-color: #7d2eff; border-radius: 5px; color: #ffffff"
+    [loading]="isProceedToSaved"
+    [disabled]="isProceedToSaved"
+    (click)="saveClick.emit()"
+  >
+    {{ SaveBtnText }}
+  </button>
+  <ng-container *ngIf="actionsFormTemplate">
+    <ng-template [ngTemplateOutlet]="actionsFormTemplate" />
+  </ng-container>
+</div>

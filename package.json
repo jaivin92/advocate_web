@@ -26,6 +26,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^20.1.8",
     "@angular/cdk": "^21.2.9",
     "@angular/common": "^21.2.11",
     "@angular/compiler": "^21.2.11",
@@ -47,6 +48,7 @@
     "apexcharts": "^5.10.0",
     "base64-js": "^1.5.1",
     "date-fns": "^4.1.0",
+    "guid-typescript": "^1.0.9",
     "ngx-permissions": "^19.0.0",
     "ngx-progressbar": "^14.0.0",
     "photoviewer": "^3.11.1",

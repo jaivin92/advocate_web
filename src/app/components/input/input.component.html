@@ -1,0 +1,36 @@
+<mat-form-field class="col-12 p-0" *ngIf="!multiLine">
+  <mat-label>{{ Label }}</mat-label>
+  @if (isDisable) {
+    <input
+      matInput
+      [type]="Type"
+      [placeholder]="PlaceHolder || Label"
+      [formControlName]="Id"
+      [required]="isRequired"
+      [tabIndex]="TabIndex"
+      [disabled]="true"
+      (change)="onChange.emit($event)"
+      appInputTrim
+    />
+  } @else {
+    <input matInput [type]="Type" [placeholder]="PlaceHolder || Label" [formControlName]="Id" [required]="isRequired" [tabIndex]="TabIndex" (change)="onChange.emit($event)" appInputTrim />
+  }
+</mat-form-field>
+
+<mat-form-field class="col-12 p-0" *ngIf="multiLine">
+  <mat-label>{{ Label }}</mat-label>
+  @if (isDisable) {
+    <textarea
+      matInput
+      [placeholder]="PlaceHolder || Label"
+      [formControlName]="Id"
+      [required]="isRequired"
+      [tabIndex]="TabIndex"
+      [disabled]="true"
+      (change)="onChange.emit($event)"
+      appInputTrim
+    ></textarea>
+  } @else {
+    <textarea matInput [placeholder]="PlaceHolder || Label" [formControlName]="Id" [required]="isRequired" [tabIndex]="TabIndex" (change)="onChange.emit($event)" appInputTrim></textarea>
+  }
+</mat-form-field>

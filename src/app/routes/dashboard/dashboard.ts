@@ -48,8 +48,6 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
 
   notifySubscription = Subscription.EMPTY;
 
-  isShowAlert = true;
-
   introducingItems = [
     {
       name: 'Acrodata GUI',
@@ -162,9 +160,6 @@ export class Dashboard implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  onAlertDismiss() {
-    this.isShowAlert = false;
-  }
 
   getRandom(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

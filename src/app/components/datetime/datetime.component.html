@@ -1,0 +1,16 @@
+<mat-form-field class="col-12 p-0">
+    <mat-label>{{ Label }}</mat-label>
+
+    <input
+        matInput
+        [matDatepicker]="datePicker"
+        [min]="MinDate"
+        [max]="MaxDate"
+        [placeholder]="PlaceHolder || Label"
+        [formControlName]="Id"
+        [required]="isRequired"
+        (dateChange)="onDateChange($event)" />
+
+    <mat-datepicker #datePicker />
+    <mat-datepicker-toggle matIconSuffix [for]="datePicker" />
+</mat-form-field>

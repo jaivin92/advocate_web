@@ -1,1 +1,11 @@
-<h1>Form Component</h1>
+<form [formGroup]="fg">
+  <mat-card>
+    <mat-card-content>
+      <div class="col-sm-6 p-0">
+        <my-input [Id]="'Name'" [Label]="'Name'" [isRequired]="true" />
+      </div>
+    </mat-card-content>
+    <my-footer-button [isProceedToSaved]="isProceedToSaved" (saveClick)="onSave()" (cancelClick)="onCancel()" />
+  </mat-card>
+</form>
+

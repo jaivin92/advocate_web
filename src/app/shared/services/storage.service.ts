@@ -14,6 +14,16 @@ export class LocalStorageService {
     return true;
   }
 
+  getObj(key: string) {
+    return localStorage.getItem(key);
+  }
+
+  setObj(key: string, value: any): boolean {
+    localStorage.setItem(key, value);
+
+    return true;
+  }
+
   has(key: string): boolean {
     return !!localStorage.getItem(key);
   }

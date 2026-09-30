@@ -34,6 +34,7 @@ import { environment } from '@env/environment';
 import { formlyConfigFactory, PaginatorI18nService } from '@shared';
 import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
 import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -42,6 +43,7 @@ export const appConfig: ApplicationConfig = {
     { provide: BASE_URL, useValue: environment.baseUrl },
     provideAppInitializer(() => inject(TranslateLangService).load()),
     provideAppInitializer(() => inject(StartupService).load()),
+    provideAnimationsAsync(),
     provideHttpClient(withInterceptors(interceptors)),
     provideRouter(
       routes,

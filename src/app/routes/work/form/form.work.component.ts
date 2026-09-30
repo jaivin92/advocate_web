@@ -27,4 +27,15 @@ export class WorkFormComponent extends BaseComponent {
     this.fg.reset();
     this.fg.patchValue(data);
   }
+
+   onCancel() {
+    this.fgReset();
+  }
+
+  onSave() {
+    if (this.onCheckValidation()) {
+      return;
+    }
+    this.formSubmitStart();
+  }
 }

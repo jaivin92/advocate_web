@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-notification',
+  standalone: true,
   template: `
     <button matIconButton [matMenuTriggerFor]="menu">
       <mat-icon matBadge="5" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>

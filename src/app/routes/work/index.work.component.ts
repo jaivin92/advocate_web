@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { PageHeader } from '@shared/components';
-import { BaseComponent } from 'src/app/components/base.component';
+import { BaseComponent } from 'app/components/base.component';
 import { WorkFormComponent } from './form/form.work.component';
 import { WorkListComponent } from './list/list.work.component';
 

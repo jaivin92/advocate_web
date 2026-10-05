@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { PageHeader } from '@shared/components';
-import { BaseComponent } from 'src/app/components/base.component';
+import { BaseComponent } from 'app/components/base.component';
 
 @Component({
   selector: 'app-index-user',
@@ -10,5 +10,5 @@ import { BaseComponent } from 'src/app/components/base.component';
   imports: [PageHeader],
 })
 export class UserComponent extends BaseComponent {
-  
+
 }

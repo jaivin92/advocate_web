@@ -4,27 +4,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Guid } from 'guid-typescript';
 import { CommonFunction } from '../utils/common.functions';
 import { LocalStorageService } from '@shared';
+import { TableIds } from 'app/models/tableid.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BaseComponent extends BaseDatatableComponent {
-
   public readonly fb = inject(FormBuilder);
-  
 
   formRequestGUID: Guid | null | undefined;
   public fg: FormGroup = {} as any;
   public fgIniValue: any;
-
+  TableId = TableIds;
 
   @Output() public saveSuccess = new EventEmitter();
 
   Validation = {
     Required: Validators.required,
     Zero: Validators.min(1),
-    // eslint-disable-next-line max-len
-    UrlValidate: Validators.pattern(/^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/)
+
+    UrlValidate: Validators.pattern(/^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/),
   };
 
   get isProceedToSaved() {

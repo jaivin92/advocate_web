@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { Component, Input, Output, EventEmitter, TemplateRef, ViewChild, inject, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,18 +6,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '@core';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { LocalStorageService } from '@shared';
-import { FormModule } from 'src/app/utils/form.module';
-import { DataTableRequest } from 'src/app/models/datatable.model';
-import { DataTableFilterModel } from 'src/app/models/datatableFilter.model';
-import { TableIds } from 'src/app/models/tableid.enum';
-import { RoleAction } from 'src/app/utils/enums';
+import { DataTableRequest } from 'app/models/datatable.model';
+import { DataTableFilterModel } from 'app/models/datatableFilter.model';
+import { TableIds } from 'app/models/tableid.enum';
+import { ReadColumnDataTypeEnums, RoleAction } from 'app/utils/enums';
 import { ColumnMode, DatatableComponent, NgxDatatableModule, SelectionType } from '@swimlane/ngx-datatable';
+import { FormModule } from 'app/utils/form.module';
+import { DefaultNumberPipe } from 'app/utils/pipes/defaultnumber.pipe';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss',
-  imports: [NgxDatatableModule, CommonModule, FormsModule, MatIconModule, MatButtonModule, FormModule, MatMenuModule,],
+  imports: [CommonModule, NgxDatatableModule, FormsModule, MatIconModule, MatButtonModule, FormModule, MatMenuModule, NgTemplateOutlet, DefaultNumberPipe],
 })
 export class cDataTableComponent implements OnInit {
   public readonly localStorageService = inject(LocalStorageService);
@@ -25,16 +26,19 @@ export class cDataTableComponent implements OnInit {
   @ViewChild('tableData', { static: false }) table!: DatatableComponent;
 
   @Input() TableId: TableIds = TableIds.TableId;
+  @Input() dataTableRequest = new DataTableRequest();
+  @Input() loading = false;
   @Input() columns: any[] = [];
   @Input() headerHeight = 50;
   @Input() footerHeight = 50;
+  @Input() selectionType = SelectionType.multi;
 
   @Output() filterClick = new EventEmitter<any>();
-
 
   ColumnMode = ColumnMode;
   public fg: FormGroup = {} as any;
   showFilterForm = false;
+  ReadColumnDataTypeEnums = ReadColumnDataTypeEnums;
 
   constructor() {
     this.fg = new FormBuilder().group({
@@ -42,9 +46,7 @@ export class cDataTableComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   filterData(reset = false) {
     const _filter = this.fg.getRawValue() as DataTableFilterModel;

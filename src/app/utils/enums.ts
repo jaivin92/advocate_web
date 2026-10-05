@@ -9,5 +9,11 @@ export enum RoleAction {
 export enum UserTypes {
   SuperAdmin = 1,
   Admin = 2,
-  User = 3
+  User = 3,
+}
+
+export enum ReadColumnDataTypeEnums {
+  Date = 'Date',
+  Price = 'Price',
+  Percentage = 'Percentage',
 }

@@ -15,6 +15,8 @@ export class BaseDatatableComponent {
   public readonly authService = inject(AuthService);
   public readonly localStorageService = inject(LocalStorageService);
 
+   loadingIndicator = true;
+
   dataTableRequest = new DataTableRequest();
   public ColumnMode = ColumnMode;
 
